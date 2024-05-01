@@ -1,10 +1,23 @@
 import { Link } from 'react-router-dom';
 import loginImg from '../../assets/images/login/login.svg';
+import { UseAuth } from '../../Hook/UseAuth';
 
 export const Login = () => {
+    const {loginUser} = UseAuth()
 
     const handleLogin = (e) =>{
         e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
+        loginUser(email, password)
+        .then(res => {
+            console.log(res.user)
+        })
+        .catch(err =>{
+            console.log(err.message)
+        })
     }
 
   return (
@@ -20,13 +33,13 @@ export const Login = () => {
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="email" placeholder="email" className="input input-bordered" required />
+          <input type="email" name='email' placeholder="email" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="password" placeholder="password" className="input input-bordered" required />
+          <input type="password" name='password' placeholder="password" className="input input-bordered" required />
           <label className="label">
             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
           </label>
