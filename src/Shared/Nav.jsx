@@ -1,12 +1,15 @@
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../assets/logo.svg'
+import { UseAuth } from '../Hook/UseAuth'
 
 export const Nav = () => {
+  const {user, logOut} = UseAuth()
 
 const navLinks = <>
 <li><NavLink to="/">Home</NavLink></li>
 <li><NavLink to="/about">About</NavLink></li>
 <li><NavLink to="/service">Service</NavLink></li>
+<li><NavLink to="/bookingsAll">My Bookings</NavLink></li>
 <li><NavLink to="/blog">Blog</NavLink></li>
 </>
 
@@ -30,8 +33,16 @@ const navLinks = <>
       {navLinks}
     </ul>
   </div>
-  <div className="navbar-end">
+  <div className="navbar-end space-x-3">
   <button className="btn btn-outline btn-warning">Appointment</button>
+  {
+    user ? 
+  <button onClick={()=> logOut()} className='btn btn-error'>Log Out</button> :
+  <Link to="/login">
+  <button className='btn btn-primary'>Sign In</button>
+  </Link>
+  }
+ 
   </div>
 </div>
   )

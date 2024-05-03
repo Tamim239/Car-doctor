@@ -12,7 +12,7 @@ export const ServiceCard = ({service}) => {
     <h2 className="card-title">{title}</h2>
     <p className="text-xl text-orange-500">Price : {price}</p>
     <div className="card-actions  justify-end">
-      <Link to={`/checkout/${_id}`}>
+      <Link to={`/bookService/${_id}`}>
       <button className="btn btn-error text-3xl"><IoIosArrowRoundForward /></button>
       </Link>
     </div>
